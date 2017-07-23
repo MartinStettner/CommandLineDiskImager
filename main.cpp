@@ -224,8 +224,12 @@ HANDLE getHandleOnFile(const char *filelocation, DWORD access)
 HANDLE getHandleOnDevice(int device, DWORD access)
 {
     HANDLE hDevice;
-    char devicename[18];
-    sprintf(devicename, "\\\\.\\PhysicalDrive%d", device);
+	const int DEVICE_NAME_COUNT = 30;
+	char devicename[DEVICE_NAME_COUNT];
+    int len = snprintf(devicename, DEVICE_NAME_COUNT,  "\\\\.\\PhysicalDrive%d", device);
+	if (len >= DEVICE_NAME_COUNT) {
+		return INVALID_HANDLE_VALUE;
+	}
 
     hDevice = CreateFile(devicename, access, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, 0, NULL);
     if (hDevice == INVALID_HANDLE_VALUE)
