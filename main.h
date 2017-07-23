@@ -66,6 +66,8 @@ typedef struct _DEVICE_NUMBER
     ULONG  PartitionNumber;
 } DEVICE_NUMBER, *PDEVICE_NUMBER;
 
+// Already defined in winioctl.h
+/*
 typedef enum _STORAGE_PROPERTY_ID { 
   StorageDeviceProperty                  = 0,
   StorageAdapterProperty                 = 1,
@@ -112,5 +114,5 @@ typedef struct _STORAGE_PROPERTY_QUERY {
   STORAGE_QUERY_TYPE  QueryType;
   BYTE                AdditionalParameters[1];
 } STORAGE_PROPERTY_QUERY, *PSTORAGE_PROPERTY_QUERY;
-
+*/
 #endif
